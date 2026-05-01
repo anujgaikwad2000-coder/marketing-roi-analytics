@@ -59,7 +59,8 @@ Designed for scalable analytics and efficient DAX calculations.
 - Market expansion insights
 
 ## 🚀 Live Interactive Dashboard  
-👉 Click here to explore the full interactive dashboard:
+👉 Click here to explore the full interactive dashboard: https://anujgaikwad.github.io/marketing-roi-analytics/
+
 
 
 
