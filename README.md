@@ -57,3 +57,9 @@ Designed for scalable analytics and efficient DAX calculations.
 - Budget reallocation strategy
 - Campaign optimization actions
 - Market expansion insights
+
+## 🚀 Live Interactive Dashboard  
+👉 Click here to explore the full interactive dashboard:
+
+
+
