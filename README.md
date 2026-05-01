@@ -1,26 +1,59 @@
-# marketing-roi-analytics
+# 📊 Marketing Campaign ROI Analysis & Optimization
 
-## 🔗 Project Links
-- 📂 **GitHub Repository:** [Add Link]
-- 🌐 **Interactive Dashboard (HTML):** [Add Link]
+## 🚩 Problem Statement
+Most marketing teams track performance but fail to identify where budget is actually being wasted**.
 
-## 💡 What Makes This Different
-This is not just a dashboard:
-- End-to-end analytics pipeline
-- Business-driven KPIs (not vanity metrics)
-- Clear decision-making framework
-- Realistic, stakeholder-focused insights
+This project analyzes 5,000+ campaigns across 6 channels and 5 regions to:
+- Measure true ROI
+- Detect negative ROI campaigns
+- Recommend budget reallocation for maximum impact
 
+## 🎯 Business Objective
+Optimize ~$32.7M marketing spend by:
+- Identifying high-performing channels
+- Eliminating wasteful campaigns
+- Improving conversion efficiency
 
-## 🚀 How to Use
-1. Clone the repository  
-2. Load dataset into Power BI  
-3. Refresh queries  
-4. Explore dashboard using slicers  
+## 📌 Key Insights
+- ❗ 31% of total spend (~$10.2M) was wasted on negative ROI campaigns  
+- 📧 Email marketing delivered ~15,000% ROI but received only ~5% budget  
+- ⚠️ 90% drop at impression → click stage indicating poor ad creatives  
+- 📈 Potential **~$95M annual impact** through reallocation and funnel optimization  
 
+## 🏗️ Data Model (Star Schema)
+- Fact Table: `fact_campaign`
+- Dimension Tables:
+  - `dim_date`
+  - `dim_channel`
+  - `dim_region`
+  - `dim_campaign_type`
 
-## 📣 Final Takeaway
-The biggest problem in marketing isn’t low performance—  
-it’s **misallocation of budget due to lack of visibility**.
+Designed for scalable analytics and efficient DAX calculations.
 
-This project focuses on fixing that.
+## 🔧 Tech Stack
+- SQL → Data extraction & transformation  
+- Python → Data processing & analysis  
+- Power BI → Dashboard & visualization  
+- DAX → KPI calculations (ROI, CAC, CTR, CVR)  
+- Power Query → Data cleaning & feature engineering  
+
+## 📊 Dashboard Overview
+### 1. Executive Overview
+- Revenue, Cost, ROI, CAC KPIs
+- Monthly trends
+- Channel performance
+
+### 2. Deep Dive Analysis
+- Funnel (Impressions → Clicks → Conversions)
+- ROI by region & channel
+- Drill-down capability
+
+### 3. Campaign Insights
+- Top & bottom performers
+- Budget waste analysis
+- CAC comparison
+
+### 4. Recommendations
+- Budget reallocation strategy
+- Campaign optimization actions
+- Market expansion insights
