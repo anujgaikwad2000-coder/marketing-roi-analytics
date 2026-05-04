@@ -1,13 +1,5 @@
--- ============================================================
--- Marketing Campaign Effectiveness & ROI Analysis
--- SQL Queries - Simple & Readable Version
--- ============================================================
-
-
--- ============================================================
+=
 -- STEP 1: CREATE THE TABLE
--- This is where all campaign data will be stored
--- ============================================================
 
 CREATE TABLE IF NOT EXISTS marketing_campaign (
     campaign_id               VARCHAR(20),
@@ -23,11 +15,8 @@ CREATE TABLE IF NOT EXISTS marketing_campaign (
     date                      DATE
 );
 
-
--- ============================================================
 -- STEP 2: OVERALL BUSINESS SUMMARY
 -- One query to get the big picture numbers
--- ============================================================
 
 SELECT
     COUNT(*)                                        AS total_campaigns,
@@ -56,10 +45,10 @@ SELECT
 FROM marketing_campaign;
 
 
--- ============================================================
+
 -- STEP 3: PERFORMANCE BY CAMPAIGN TYPE
 -- Which channel (Email, Paid Ads, etc.) performs best?
--- ============================================================
+
 
 SELECT
     campaign_type,
@@ -88,12 +77,9 @@ FROM marketing_campaign
 GROUP BY campaign_type
 ORDER BY roi_pct DESC;
 
-
--- ============================================================
 -- STEP 4: PERFORMANCE BY REGION
 -- Which region generates the most revenue?
 -- Uses a CTE to also calculate % contribution
--- ============================================================
 
 -- First calculate revenue per region
 WITH region_summary AS (
@@ -123,10 +109,9 @@ FROM region_summary
 ORDER BY total_revenue DESC;
 
 
--- ============================================================
 -- STEP 5: TOP 20 BEST CAMPAIGNS (Highest ROI)
 -- Which specific campaigns made the most profit?
--- ============================================================
+
 
 SELECT
     campaign_id,
@@ -150,10 +135,8 @@ ORDER BY roi_pct DESC
 LIMIT 20;
 
 
--- ============================================================
 -- STEP 6: BOTTOM 20 WORST CAMPAIGNS (Biggest Budget Drains)
 -- Which campaigns lost the most money?
--- ============================================================
 
 SELECT
     campaign_id,
@@ -175,11 +158,11 @@ ORDER BY net_loss ASC  -- most negative first
 LIMIT 20;
 
 
--- ============================================================
+
 -- STEP 7: CAMPAIGN TYPE RECOMMENDATION
 -- Automatically label each type: Scale / Optimize / Cut
--- Uses CASE WHEN like an IF-ELSE statement
--- ============================================================
+-- Uses CASE WHEN 
+
 
 SELECT
     campaign_type,
@@ -213,11 +196,10 @@ GROUP BY campaign_type
 ORDER BY avg_roi_pct DESC;
 
 
--- ============================================================
 -- STEP 8: MONTHLY REVENUE TREND
 -- How does revenue change month by month?
 -- Uses LAG() to compare with previous month
--- ============================================================
+
 
 WITH monthly AS (
     SELECT
@@ -256,11 +238,9 @@ FROM monthly
 ORDER BY year, month;
 
 
--- ============================================================
 -- STEP 9: CONVERSION FUNNEL
 -- Where are people dropping off?
 -- Impressions → Clicks → Conversions
--- ============================================================
 
 SELECT
     campaign_type,
@@ -283,10 +263,10 @@ GROUP BY campaign_type
 ORDER BY conversion_rate_pct DESC;
 
 
--- ============================================================
+
 -- STEP 10: BUDGET WASTE FINDER
 -- Show campaigns that are losing money and how much
--- ============================================================
+
 
 SELECT
     campaign_type,
@@ -307,11 +287,9 @@ ORDER BY money_lost DESC
 LIMIT 20;
 
 
--- ============================================================
 -- STEP 11: CAMPAIGN QUARTILE RANKING
 -- Split all campaigns into 4 equal groups (quartiles)
 -- Bottom 25% = Cut, Top 25% = Scale
--- ============================================================
 
 WITH campaign_scores AS (
     SELECT
@@ -345,11 +323,9 @@ GROUP BY quartile
 ORDER BY quartile;
 
 
--- ============================================================
 -- STEP 12: CHANNEL vs REGION CROSS ANALYSIS
 -- For each channel, which region performs best?
 -- RANK() PARTITION = rank within each channel separately
--- ============================================================
 
 SELECT
     channel,
