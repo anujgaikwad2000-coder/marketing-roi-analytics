@@ -1,4 +1,4 @@
-=
+
 -- STEP 1: CREATE THE TABLE
 
 CREATE TABLE IF NOT EXISTS marketing_campaign (
