@@ -1,8 +1,3 @@
-"""
-Marketing Campaign ROI Analysis
-Simple & Readable Version — same output as before
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib
@@ -13,9 +8,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-# ─────────────────────────────────────────
 # COLOURS WE WILL REUSE ACROSS ALL CHARTS
-# ─────────────────────────────────────────
+
 COLORS = {
     'Email':        '#2A9D8F',
     'Social Media': '#E63946',
@@ -43,9 +37,9 @@ plt.rcParams.update({
 })
 
 
-# ═══════════════════════════════════════════════════════
+
 # STEP 1 — LOAD THE DATA
-# ═══════════════════════════════════════════════════════
+
 
 df = pd.read_csv(
     '/home/claude/marketing-roi-analysis/data/marketing_campaign.csv',
@@ -62,10 +56,10 @@ print(f"  Channels      : {df['channel'].nunique()}")
 print(f"  Regions       : {df['region'].nunique()}")
 
 
-# ═══════════════════════════════════════════════════════
+
 # STEP 2 — ADD CALCULATED COLUMNS
 # These don't exist in the raw CSV, so we compute them
-# ═══════════════════════════════════════════════════════
+
 
 # CTR  = clicks / impressions   (what % of viewers clicked)
 df['ctr'] = df['clicks'] / df['impressions']
@@ -94,9 +88,8 @@ def get_tier(roi):
 df['tier'] = df['roi'].apply(get_tier)
 
 
-# ═══════════════════════════════════════════════════════
 # STEP 3 — PRINT THE KEY BUSINESS NUMBERS
-# ═══════════════════════════════════════════════════════
+
 
 total_revenue = df['revenue_generated'].sum()
 total_cost    = df['campaign_cost'].sum()
@@ -118,10 +111,9 @@ print(f"  Avg CVR        : {avg_cvr:>11.2f}%")
 print(f"  Avg CAC        : ${avg_cac:>11.2f}")
 
 
-# ═══════════════════════════════════════════════════════
 # STEP 4 — SUMMARISE BY CAMPAIGN TYPE
 # Group all rows by type and calculate totals
-# ═══════════════════════════════════════════════════════
+
 
 # Group by campaign_type, then calculate totals for each group
 by_type = df.groupby('campaign_type').agg(
@@ -149,10 +141,9 @@ print("─" * 55)
 print(by_type[['campaigns', 'revenue', 'cost', 'profit', 'roi_pct']].round(2).to_string())
 
 
-# ═══════════════════════════════════════════════════════
 # STEP 5 — CORRELATION ANALYSIS
 # See which numbers move together
-# ═══════════════════════════════════════════════════════
+
 
 cols_to_check = ['impressions', 'clicks', 'conversions',
                  'revenue_generated', 'campaign_cost', 'roi', 'net_profit']
@@ -160,9 +151,7 @@ cols_to_check = ['impressions', 'clicks', 'conversions',
 corr = df[cols_to_check].corr()   # correlation matrix (values between -1 and +1)
 
 
-# ═══════════════════════════════════════════════════════
 # FIGURE 1 — EXECUTIVE DASHBOARD (4 charts in 1 image)
-# ═══════════════════════════════════════════════════════
 
 fig, axes = plt.subplots(2, 2, figsize=(16, 10), facecolor=BG)
 fig.suptitle('Marketing Campaign ROI — Executive Dashboard',
@@ -255,9 +244,8 @@ plt.close()
 print("\n✅ Figure 1 saved: Executive Dashboard")
 
 
-# ═══════════════════════════════════════════════════════
 # FIGURE 2 — DEEP DIVE (4 more charts)
-# ═══════════════════════════════════════════════════════
+
 
 fig, axes = plt.subplots(2, 2, figsize=(16, 10), facecolor=BG)
 fig.suptitle('Marketing Campaign ROI — Deep Dive Analysis',
@@ -352,9 +340,8 @@ plt.close()
 print("✅ Figure 2 saved: Deep Dive Analysis")
 
 
-# ═══════════════════════════════════════════════════════
 # STEP 6 — PRINT KEY BUSINESS INSIGHTS
-# ═══════════════════════════════════════════════════════
+
 
 best_type  = by_type['roi_pct'].idxmax()
 worst_type = by_type['roi_pct'].idxmin()
